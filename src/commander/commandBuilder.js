@@ -3,7 +3,7 @@ import commander from 'commander';
 export class CommandBuilder {
     constructor(args) {
         this.args = args;
-        commander.version('1.0.0').description('CLI for compilers generating');
+        commander.version('1.0.0').description('CLI for generating parsing tables and more');
     }
 
     static of(args) {
