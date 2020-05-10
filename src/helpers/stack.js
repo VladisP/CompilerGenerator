@@ -8,7 +8,7 @@ export class Stack {
     }
 
     pop() {
-        this.$data.pop();
+        return this.$data.pop();
     }
 
     get top() {
