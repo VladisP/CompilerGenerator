@@ -1,6 +1,6 @@
 export const Domains = {
-    TERMINAL: 'terminal',
-    NONTERMINAL: 'nonterminal',
+    TERMINAL: 'T',
+    NONTERMINAL: 'N',
     KEYWORD: 'keyword',
     AXIOM: "'axiom",
     END: "'end",

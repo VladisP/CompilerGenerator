@@ -1,8 +1,7 @@
 export class Symbol {
-    constructor({name, isTerminal, domain}) {
-        this.name = name;
+    constructor({value, isTerminal}) {
+        this.value = value;
         this.isTerminal = isTerminal;
-        this.domain = domain;
     }
 
     static of(props) {

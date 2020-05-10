@@ -1,4 +1,4 @@
-import {Domains} from './lexer/domains.js';
+import {Domains} from '../lexer/domains.js';
 
 export function buildFirst(rules) {
     const firstSet = {};
@@ -33,8 +33,8 @@ function first(updSet, nodes) {
         return [nodes[0]];
     }
 
-    const f = updSet[nodes[0].name];
-    let res = f.filter((elem) => elem.domain !== Domains.EMPTY);
+    const f = updSet[nodes[0].value];
+    let res = f.filter((elem) => elem.value !== Domains.EMPTY);
 
     if (res.length !== f.length) {
         res = res.concat(first(updSet, nodes.slice(1)));
@@ -45,7 +45,7 @@ function first(updSet, nodes) {
 
 export function unique(nodes) {
     return nodes.reduce((prev, node) => {
-        if (!prev.find((elem) => elem.domain === node.domain)) {
+        if (!prev.find((elem) => elem.value === node.value)) {
             prev.push(node);
         }
 

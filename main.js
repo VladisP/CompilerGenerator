@@ -3,10 +3,11 @@ import {Lexer} from './src/lexer/lexer.js';
 import {ParserConfig} from './src/parser/config.js';
 import {Parser} from './src/parser/parser.js';
 import {getViewTree} from './src/helpers/viewTree.js';
-import {buildRules} from './src/buildRules.js';
-import {buildFirst} from './src/buildFirst.js';
-import {buildFollow} from './src/buildFollow.js';
-import {buildTable} from './src/buildTable.js';
+import {buildRules} from './src/generator/buildRules.js';
+import {trim} from './src/helpers/termTrimmer.js';
+import {buildFirst} from './src/generator/buildFirst.js';
+import {buildFollow} from './src/generator/buildFollow.js';
+import {buildTable} from './src/generator/buildTable.js';
 
 const args = process.argv.slice(2);
 
@@ -22,7 +23,7 @@ try {
     const parser = new Parser(config);
     const tree = parser.parse();
     const viewTree = getViewTree(tree);
-    const rules = buildRules(tree);
+    const rules = trim(buildRules(tree));
     const first = buildFirst(rules);
     const follow = buildFollow(rules, first);
     const table = buildTable(rules, first, follow);

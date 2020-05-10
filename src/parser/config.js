@@ -5,68 +5,137 @@ export class ParserConfig {
     constructor(lexer) {
         this.lexer = lexer;
         this.table = this.makeTable();
-        this.axiom = Symbol.of({name: 'S'});
-        this.eof = Symbol.of({name: '$', isTerminal: true, domain: Domains.EOF});
-        this.empty = Symbol.of({name: 'e', domain: Domains.EMPTY});
+        this.axiom = Symbol.of({value: 'S'});
+        this.eof = Symbol.of({value: Domains.EOF, isTerminal: true});
+        this.empty = Symbol.of({value: Domains.EMPTY});
     }
 
     makeTable() {
         return {
-            'S': {
-                [Domains.AXIOM]: [
-                    Symbol.of({name: "'axiom", isTerminal: true, domain: Domains.AXIOM}),
-                    Symbol.of({name: 'R'}),
-                    Symbol.of({name: 'R1'})
+            "S": {
+                "'axiom": [
+                    {
+                        "value": "'axiom",
+                        "isTerminal": true
+                    },
+                    {
+                        "value": "R",
+                        "isTerminal": false
+                    },
+                    {
+                        "value": "R1",
+                        "isTerminal": false
+                    }
                 ],
-                [Domains.EOF]: [
-                    Symbol.of({name: 'e', domain: Domains.EMPTY})
+                "eof": [
+                    {
+                        "value": "empty",
+                        "isTerminal": true
+                    }
                 ]
             },
-            'R': {
-                [Domains.NONTERMINAL]: [
-                    Symbol.of({name: 'N', isTerminal: true, domain: Domains.NONTERMINAL}),
-                    Symbol.of({name: '->', isTerminal: true, domain: Domains.ARROW}),
-                    Symbol.of({name: 'B'}),
-                    Symbol.of({name: "'end", isTerminal: true, domain: Domains.END})
+            "R": {
+                "N": [
+                    {
+                        "value": "N",
+                        "isTerminal": true
+                    },
+                    {
+                        "value": "->",
+                        "isTerminal": true
+                    },
+                    {
+                        "value": "B",
+                        "isTerminal": false
+                    },
+                    {
+                        "value": "'end",
+                        "isTerminal": true
+                    }
                 ]
             },
-            'B': {
-                [Domains.TERMINAL]: [
-                    Symbol.of({name: 'T', isTerminal: true, domain: Domains.TERMINAL}),
-                    Symbol.of({name: 'B1'})
+            "B": {
+                "T": [
+                    {
+                        "value": "T",
+                        "isTerminal": true
+                    },
+                    {
+                        "value": "B1",
+                        "isTerminal": false
+                    }
                 ],
-                [Domains.NONTERMINAL]: [
-                    Symbol.of({name: 'N', isTerminal: true, domain: Domains.NONTERMINAL}),
-                    Symbol.of({name: 'B1'})
+                "N": [
+                    {
+                        "value": "N",
+                        "isTerminal": true
+                    },
+                    {
+                        "value": "B1",
+                        "isTerminal": false
+                    }
                 ],
-                [Domains.EPSILON]: [
-                    Symbol.of({name: "'epsilon", isTerminal: true, domain: Domains.EPSILON})
+                "'epsilon": [
+                    {
+                        "value": "'epsilon",
+                        "isTerminal": true
+                    }
                 ]
             },
-            'B1': {
-                [Domains.TERMINAL]: [
-                    Symbol.of({name: 'T', isTerminal: true, domain: Domains.TERMINAL}),
-                    Symbol.of({name: 'B1'})
+            "B1": {
+                "T": [
+                    {
+                        "value": "T",
+                        "isTerminal": true
+                    },
+                    {
+                        "value": "B1",
+                        "isTerminal": false
+                    }
                 ],
-                [Domains.NONTERMINAL]: [
-                    Symbol.of({name: 'N', isTerminal: true, domain: Domains.NONTERMINAL}),
-                    Symbol.of({name: 'B1'})
+                "N": [
+                    {
+                        "value": "N",
+                        "isTerminal": true
+                    },
+                    {
+                        "value": "B1",
+                        "isTerminal": false
+                    }
                 ],
-                [Domains.OR]: [
-                    Symbol.of({name: "'or", isTerminal: true, domain: Domains.OR}),
-                    Symbol.of({name: 'B'})
+                "'or": [
+                    {
+                        "value": "'or",
+                        "isTerminal": true
+                    },
+                    {
+                        "value": "B",
+                        "isTerminal": false
+                    }
                 ],
-                [Domains.END]: [
-                    Symbol.of({name: 'e', domain: Domains.EMPTY})
+                "'end": [
+                    {
+                        "value": "empty",
+                        "isTerminal": true
+                    }
                 ]
             },
-            'R1': {
-                [Domains.NONTERMINAL]: [
-                    Symbol.of({name: 'R'}),
-                    Symbol.of({name: 'R1'})
+            "R1": {
+                "N": [
+                    {
+                        "value": "R",
+                        "isTerminal": false
+                    },
+                    {
+                        "value": "R1",
+                        "isTerminal": false
+                    }
                 ],
-                [Domains.EOF]: [
-                    Symbol.of({name: 'e', domain: Domains.EMPTY})
+                "eof": [
+                    {
+                        "value": "empty",
+                        "isTerminal": true
+                    }
                 ]
             }
         };

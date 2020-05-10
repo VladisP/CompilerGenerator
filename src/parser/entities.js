@@ -1,6 +1,5 @@
 export class Terminal {
-    constructor({name, token}) {
-        this.name = name;
+    constructor(token) {
         this.token = token;
     }
 }

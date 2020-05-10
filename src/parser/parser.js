@@ -23,20 +23,20 @@ export class Parser {
             const symbol = stack.top.symbol;
 
             if (symbol.isTerminal) {
-                if (symbol.domain === token.domain) {
-                    stack.top.parent.children.push(new Terminal({name: symbol.name, token}));
+                if (symbol.value === token.domain) {
+                    stack.top.parent.children.push(new Terminal(token));
                     stack.pop();
                     token = this.lexer.nextToken();
                 } else {
                     throw new Error(`Unexpected token ${token.toString()}`);
                 }
-            } else if (this.table[symbol.name][token.domain]) {
-                const rule = this.table[symbol.name][token.domain];
+            } else if (this.table[symbol.value][token.domain]) {
+                const rule = this.table[symbol.value][token.domain];
 
-                if (rule.length === 1 && rule[0].domain === this.empty.domain) {
+                if (rule.length === 1 && rule[0].value === this.empty.value) {
                     stack.pop();
                 } else {
-                    const nonTerm = new NonTerminal({name: symbol.name, rule});
+                    const nonTerm = new NonTerminal({name: symbol.value, rule});
                     stack.top.parent.children.push(nonTerm);
                     stack.pop();
                     rule.slice().reverse().forEach((s) => stack.push(new Node({symbol: s, parent: nonTerm})));
