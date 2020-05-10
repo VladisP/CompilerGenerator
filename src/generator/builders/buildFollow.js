@@ -1,6 +1,6 @@
 import {init, copy, unique} from './buildFirst.js';
 import {Domains} from '../lexer/domains.js';
-import {Symbol} from '../helpers/symbol.js';
+import {Symbol} from '../../helpers/symbol.js';
 
 export function getFirst(node, first) {
     return node.isTerminal ? [node] : first[node.value];

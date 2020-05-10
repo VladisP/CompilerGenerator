@@ -1,52 +1,20 @@
-import fs from 'fs';
-import {Lexer} from './src/lexer/lexer.js';
-import {ParserConfig} from './src/parser/config.js';
-import {Parser} from './src/parser/parser.js';
-import {getViewTree} from './src/helpers/viewTree.js';
-import {buildRules} from './src/generator/buildRules.js';
-import {trim} from './src/helpers/termTrimmer.js';
-import {buildFirst} from './src/generator/buildFirst.js';
-import {buildFollow} from './src/generator/buildFollow.js';
-import {buildTable} from './src/generator/buildTable.js';
-import {CalcLexer} from './src/calculator/lexer.js';
-import {CalcParserConfig} from './src/calculator/config.js';
-import {calculate} from './src/calculator/calculate.js';
+#!/usr/bin/env node --experimental-modules
 
-const args = process.argv.slice(2);
+import {CommandBuilder} from './src/commander/commandBuilder.js';
+import {GeneratorApp} from './src/generator/application.js';
+import {CalculatorApp} from './src/calculator/application.js';
 
-if (args.length === 0) {
-    console.log('Usage: node main.js <path-to-src-file>');
-    process.exit(1);
-}
+CommandBuilder
+    .of(process.argv)
+    .createGenerateCommand((path) => run(path, GeneratorApp))
+    .createCalculateCommand((path) => run(path, CalculatorApp))
+    .parse();
 
-try {
-    const program = fs.readFileSync(args[0]).toString();
-    const calcLexer = new CalcLexer(program);
-    const config = new CalcParserConfig(calcLexer);
-    const parser = new Parser(config);
-    const tree = parser.parse();
-    const viewTree = getViewTree(tree);
-    const res = calculate(tree);
-
-    fs.writeFileSync('./calcOutput/tree.json', JSON.stringify(viewTree, null, 2));
-    fs.writeFileSync('./calcOutput/res.json', JSON.stringify(res, null, 2));
-
-    /*const program = fs.readFileSync(args[0]).toString();
-    const lexer = new Lexer(program);
-    const config = new ParserConfig(lexer);
-    const parser = new Parser(config);
-    const tree = parser.parse();
-    const viewTree = getViewTree(tree);
-    const rules = trim(buildRules(tree));
-    const first = buildFirst(rules);
-    const follow = buildFollow(rules, first);
-    const table = buildTable(rules, first, follow);
-
-    fs.writeFileSync('./output/tree.json', JSON.stringify(viewTree, null, 2));
-    fs.writeFileSync('./output/rules.json', JSON.stringify(rules, null, 2));
-    fs.writeFileSync('./output/FIRST.json', JSON.stringify(first, null, 2));
-    fs.writeFileSync('./output/FOLLOW.json', JSON.stringify(follow, null, 2));
-    fs.writeFileSync('./output/table.json', JSON.stringify(table, null, 2));*/
-} catch (e) {
-    console.error(e);
+function run(path, AppConstructor) {
+    try {
+        const app = new AppConstructor(path);
+        app.run();
+    } catch (e) {
+        console.error(e);
+    }
 }

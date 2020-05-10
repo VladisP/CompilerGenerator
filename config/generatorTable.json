@@ -1,0 +1,128 @@
+{
+  "S": {
+    "'axiom": [
+      {
+        "value": "'axiom",
+        "isTerminal": true
+      },
+      {
+        "value": "R",
+        "isTerminal": false
+      },
+      {
+        "value": "R1",
+        "isTerminal": false
+      }
+    ],
+    "eof": [
+      {
+        "value": "empty",
+        "isTerminal": true
+      }
+    ]
+  },
+  "R": {
+    "N": [
+      {
+        "value": "N",
+        "isTerminal": true
+      },
+      {
+        "value": "->",
+        "isTerminal": true
+      },
+      {
+        "value": "B",
+        "isTerminal": false
+      },
+      {
+        "value": "'end",
+        "isTerminal": true
+      }
+    ]
+  },
+  "B": {
+    "T": [
+      {
+        "value": "T",
+        "isTerminal": true
+      },
+      {
+        "value": "B1",
+        "isTerminal": false
+      }
+    ],
+    "N": [
+      {
+        "value": "N",
+        "isTerminal": true
+      },
+      {
+        "value": "B1",
+        "isTerminal": false
+      }
+    ],
+    "'epsilon": [
+      {
+        "value": "'epsilon",
+        "isTerminal": true
+      }
+    ]
+  },
+  "B1": {
+    "T": [
+      {
+        "value": "T",
+        "isTerminal": true
+      },
+      {
+        "value": "B1",
+        "isTerminal": false
+      }
+    ],
+    "N": [
+      {
+        "value": "N",
+        "isTerminal": true
+      },
+      {
+        "value": "B1",
+        "isTerminal": false
+      }
+    ],
+    "'or": [
+      {
+        "value": "'or",
+        "isTerminal": true
+      },
+      {
+        "value": "B",
+        "isTerminal": false
+      }
+    ],
+    "'end": [
+      {
+        "value": "empty",
+        "isTerminal": true
+      }
+    ]
+  },
+  "R1": {
+    "N": [
+      {
+        "value": "R",
+        "isTerminal": false
+      },
+      {
+        "value": "R1",
+        "isTerminal": false
+      }
+    ],
+    "eof": [
+      {
+        "value": "empty",
+        "isTerminal": true
+      }
+    ]
+  }
+}

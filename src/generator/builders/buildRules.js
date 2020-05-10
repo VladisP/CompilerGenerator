@@ -1,5 +1,5 @@
 import {Domains} from '../lexer/domains.js';
-import {Symbol} from '../helpers/symbol.js';
+import {Symbol} from '../../helpers/symbol.js';
 
 export function buildRules({children}) {
     let rules = [];

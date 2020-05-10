@@ -1,17 +1,17 @@
-import {CalcDomains} from './domains.js';
+import {Domains} from '../lexer/domains.js';
 
 export class CalcExprAtom {
     constructor(token) {
         switch (token.domain) {
-            case CalcDomains.NUMBER:
+            case Domains.NUMBER:
                 this.value = Number.parseInt(token.value);
                 this.number = true;
                 break;
-            case CalcDomains.ADD:
+            case Domains.ADD:
                 this.value = token.value;
                 this.priority = 1;
                 break;
-            case CalcDomains.MUL:
+            case Domains.MUL:
                 this.value = token.value;
                 this.priority = 2;
                 break;

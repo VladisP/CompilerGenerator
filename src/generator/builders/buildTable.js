@@ -12,7 +12,7 @@ export function buildTable(rules, first, follow) {
 
         for (const elem of firstX) {
             if (table[x][elem.value]) {
-                throw new Error('Грамматика не относится к классу LL(1)-грамматик');
+                throw new Error('Grammar does not belong to class LL(1)');
             }
 
             table[x][elem.value] = rule.to;
@@ -21,7 +21,7 @@ export function buildTable(rules, first, follow) {
         if (rawFirstX.length !== firstX.length) {
             for (const elem of follow[x]) {
                 if (table[x][elem.value]) {
-                    throw new Error('Грамматика не относится к классу LL(1)-грамматик');
+                    throw new Error('Grammar does not belong to class LL(1)');
                 }
 
                 table[x][elem.value] = rule.to;

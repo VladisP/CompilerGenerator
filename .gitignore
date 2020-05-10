@@ -1,4 +1,4 @@
 .idea
-assets
-output
-calcOutput
+node_modules
+generator-output
+calculator-output

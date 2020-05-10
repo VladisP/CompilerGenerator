@@ -1,7 +1,14 @@
 {
-  "name": "lab7.1",
+  "name": "compiler-cli",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "main": "main.js"
+  "main": "main.js",
+  "bin": {
+    "compiler-cli": "main.js"
+  },
+  "dependencies": {
+    "app-root-path": "^3.0.0",
+    "commander": "^5.1.0"
+  }
 }

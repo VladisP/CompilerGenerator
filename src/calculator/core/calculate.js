@@ -1,5 +1,5 @@
-import {Stack} from '../helpers/stack.js';
-import {CalcDomains} from './domains.js';
+import {Stack} from '../../helpers/stack.js';
+import {Domains} from '../lexer/domains.js';
 import {CalcExprAtom} from './exprAtom.js';
 
 export function calculate({children: tree}) {
@@ -19,8 +19,8 @@ export function calculate({children: tree}) {
 }
 
 const opsMap = {
-    [CalcDomains.ADD]: (a, b) => a + b,
-    [CalcDomains.MUL]: (a, b) => a * b
+    [Domains.ADD]: (a, b) => a + b,
+    [Domains.MUL]: (a, b) => a * b
 };
 
 function getExpr(tree) {
@@ -42,10 +42,10 @@ function getPostfixExpr(expr) {
     expr.slice(0, expr.length - 1).forEach((atom) => {
         if (atom.number) {
             queue.push(atom);
-        } else if (atom.value === CalcDomains.LPAREN) {
+        } else if (atom.value === Domains.LPAREN) {
             stack.push(atom);
-        } else if (atom.value === CalcDomains.RPAREN) {
-            while (stack.top.value !== CalcDomains.LPAREN) {
+        } else if (atom.value === Domains.RPAREN) {
+            while (stack.top.value !== Domains.LPAREN) {
                 queue.push(stack.pop());
             }
 

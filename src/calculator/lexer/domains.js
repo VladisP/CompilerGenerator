@@ -1,4 +1,4 @@
-export const CalcDomains = {
+export const Domains = {
     NUMBER: 'n',
     ADD: '+',
     MUL: '*',

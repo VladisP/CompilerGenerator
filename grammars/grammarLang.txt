@@ -1,0 +1,11 @@
+'axiom S -> "'axiom" R R1 'or
+            'epsilon 'end
+R -> "N" "->" B "'end" 'end
+B -> "T" B1 'or
+     "N" B1 'or
+     "'epsilon" 'end
+B1 -> "T" B1 'or
+      "N" B1 'or
+      "'or" B 'or
+      'epsilon 'end
+R1 -> R R1 'or 'epsilon 'end

@@ -1,4 +1,4 @@
-import {Token} from './token.js';
+import {Token} from '../../helpers/token.js';
 import {Domains} from './domains.js';
 
 export class Lexer {
@@ -55,7 +55,7 @@ export class Lexer {
         } else if (res.groups['nonterminal']) {
             return this.createToken(Domains.NONTERMINAL, res.groups['nonterminal']);
         } else if (res.groups['keywords']) {
-            return this.createToken(Domains.KEYWORD, res.groups['keywords']);
+            return this.createToken(res.groups['keywords'], res.groups['keywords']);
         } else {
             this.position = this.regexp.lastIndex;
             return this.nextToken();

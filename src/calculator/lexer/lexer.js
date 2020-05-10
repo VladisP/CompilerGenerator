@@ -1,7 +1,7 @@
-import {Token} from '../lexer/token.js';
-import {CalcDomains} from './domains.js';
+import {Token} from '../../helpers/token.js';
+import {Domains} from './domains.js';
 
-export class CalcLexer {
+export class Lexer {
     constructor(program) {
         this.program = program;
         this.position = 0;
@@ -33,7 +33,7 @@ export class CalcLexer {
 
     nextToken() {
         if (this.position >= this.program.length) {
-            return new Token(CalcDomains.EOF, this.lineNum, this.program.length - this.delta + 1, null);
+            return new Token(Domains.EOF, this.lineNum, this.program.length - this.delta + 1, null);
         }
 
         const res = this.find();
@@ -50,7 +50,7 @@ export class CalcLexer {
             this.position = this.regexp.lastIndex;
             return this.nextToken();
         } else if (res.groups['number']) {
-            return this.createToken(CalcDomains.NUMBER, res.groups['number']);
+            return this.createToken(Domains.NUMBER, res.groups['number']);
         } else if (res.groups['spec']) {
             return this.createToken(res.groups['spec'], res.groups['spec']);
         } else {
